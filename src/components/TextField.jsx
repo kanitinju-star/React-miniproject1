@@ -2,7 +2,14 @@ const TextField = ({ label, id, name, value, onChange, type = "text", error, pla
     return (
         <div className="flex flex-col gap-1 mb-4">
             <label htmlFor={id} className="font-semibold text-gray-700">
-                {label}
+                {label.includes('*') ? (
+                    <>
+                        {label.replace('*', '')}
+                        <span className="text-red-500">*</span>
+                    </>
+                ) : (
+                    label
+                )}
             </label>
             {multiline ? (
                 <textarea

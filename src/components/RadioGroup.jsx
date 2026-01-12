@@ -1,7 +1,16 @@
 const RadioGroup = ({ label, name, options, selectedValue, onChange, error }) => {
     return (
         <div className="flex flex-col gap-2 mb-4">
-            <span className="font-semibold text-gray-700">{label}</span>
+            <span className="font-semibold text-gray-700">
+                {label.includes('*') ? (
+                    <>
+                        {label.replace('*', '')}
+                        <span className="text-red-500">*</span>
+                    </>
+                ) : (
+                    label
+                )}
+            </span>
             <div className="flex flex-col gap-1">
                 {options.map((option) => (
                     <label key={option.title} className="flex items-start gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors">
